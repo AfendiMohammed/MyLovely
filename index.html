@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Eman</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+        }
+
+        .card {
+            position: relative;
+            width: 350px;
+            height: 500px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            text-align: center;
+            z-index: 10;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        h1 {
+            color: #ff6b6b;
+            margin-top: 30px;
+            font-size: 28px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .message {
+            margin-top: 20px;
+            color: #555;
+            font-size: 18px;
+            line-height: 1.5;
+        }
+
+        .flowers {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .flower {
+            position: absolute;
+            background-size: contain;
+            background-repeat: no-repeat;
+            opacity: 0;
+            animation: float 8s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            color: #ff6b6b;
+            opacity: 0;
+            animation: heartFloat 6s infinite ease-in;
+        }
+
+        @keyframes heartFloat {
+            0% {
+                transform: translateY(0) scale(0.5);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        .cake {
+            width: 120px;
+            margin: 20px auto;
+            animation: bounce 2s infinite alternate;
+        }
+
+        @keyframes bounce {
+            from { transform: translateY(0); }
+            to { transform: translateY(-15px); }
+        }
+
+        .name-left {
+            position: absolute;
+            left: 10px;
+            bottom: 20px;
+            transform: rotate(-15deg);
+            color: #ff6b6b;
+            font-weight: bold;
+            font-size: 16px;
+            z-index: 20;
+        }
+
+        .name-right {
+            position: absolute;
+            right: 10px;
+            bottom: 20px;
+            transform: rotate(15deg);
+            color: #ff6b6b;
+            font-weight: bold;
+            font-size: 16px;
+            z-index: 20;
+        }
+
+        .name-decoration {
+            position: absolute;
+            font-size: 24px;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="flowers" id="flowers"></div>
+        <div class="hearts" id="hearts"></div>
+        
+        <h1>Happy Birthday Eman!</h1>
+        <div class="cake">🎂</div>
+        <div class="message">
+            To my lovely babe,<br>
+            Wishing you the most wonderful day<br>
+            filled with love and happiness!
+        </div>
+        
+        <div class="name-left">
+            <div class="name-decoration">💖</div>
+            Afendi Mohammed
+        </div>
+        
+        <div class="name-right">
+            <div class="name-decoration">💝</div>
+            Eman Ahmed
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const flowersContainer = document.getElementById('flowers');
+            const heartsContainer = document.getElementById('hearts');
+            const flowerImages = [
+                '🌸', '🌹', '🌺', '🌻', '🌼', '🌷', '💐', '🏵️'
+            ];
+            
+            // Create flowers
+            function createFlower() {
+                const flower = document.createElement('div');
+                flower.className = 'flower';
+                flower.innerHTML = flowerImages[Math.floor(Math.random() * flowerImages.length)];
+                flower.style.left = Math.random() * 100 + '%';
+                flower.style.top = '100%';
+                flower.style.fontSize = (Math.random() * 20 + 15) + 'px';
+                flower.style.animationDuration = (Math.random() * 5 + 5) + 's';
+                flower.style.animationDelay = Math.random() * 2 + 's';
+                
+                flowersContainer.appendChild(flower);
+                
+                // Remove flower after animation completes
+                setTimeout(() => {
+                    flower.remove();
+                }, 8000);
+            }
+            
+            // Create hearts
+            function createHeart() {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.innerHTML = '❤️';
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.top = '100%';
+                heart.style.animationDuration = (Math.random() * 4 + 4) + 's';
+                heart.style.animationDelay = Math.random() * 2 + 's';
+                
+                heartsContainer.appendChild(heart);
+                
+                // Remove heart after animation completes
+                setTimeout(() => {
+                    heart.remove();
+                }, 6000);
+            }
+            
+            // Create initial flowers and hearts
+            for (let i = 0; i < 15; i++) {
+                setTimeout(createFlower, i * 300);
+                setTimeout(createHeart, i * 400);
+            }
+            
+            // Continue creating flowers and hearts
+            setInterval(createFlower, 800);
+            setInterval(createHeart, 1000);
+            
+            // Add click effect
+            document.addEventListener('click', function(e) {
+                const clickHeart = document.createElement('div');
+                clickHeart.className = 'heart';
+                clickHeart.innerHTML = '❤️';
+                clickHeart.style.left = e.clientX + 'px';
+                clickHeart.style.top = e.clientY + 'px';
+                clickHeart.style.animationDuration = '3s';
+                clickHeart.style.fontSize = '30px';
+                
+                document.body.appendChild(clickHeart);
+                
+                setTimeout(() => {
+                    clickHeart.remove();
+                }, 3000);
+            });
+
+            // Add decorative hearts around names
+            function addNameDecorations() {
+                const leftName = document.querySelector('.name-left');
+                const rightName = document.querySelector('.name-right');
+                
+                for (let i = 0; i < 3; i++) {
+                    const leftHeart = document.createElement('div');
+                    leftHeart.className = 'name-decoration';
+                    leftHeart.innerHTML = '💗';
+                    leftHeart.style.left = (Math.random() * 30 - 10) + 'px';
+                    leftHeart.style.top = (Math.random() * 30 - 10) + 'px';
+                    leftHeart.style.animation = `float ${Math.random() * 3 + 3}s infinite ease-in-out`;
+                    leftName.appendChild(leftHeart);
+                    
+                    const rightHeart = document.createElement('div');
+                    rightHeart.className = 'name-decoration';
+                    rightHeart.innerHTML = '💓';
+                    rightHeart.style.right = (Math.random() * 30 - 10) + 'px';
+                    rightHeart.style.top = (Math.random() * 30 - 10) + 'px';
+                    rightHeart.style.animation = `float ${Math.random() * 3 + 3}s infinite ease-in-out`;
+                    rightName.appendChild(rightHeart);
+                }
+            }
+            
+            addNameDecorations();
+        });
+    </script>
+</body>
+</html>
